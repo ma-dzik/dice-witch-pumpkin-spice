@@ -28,7 +28,7 @@ This fork modifies Dice Witch for the Pumpkin Spice system:
 ---
 # Install
 
-You can install Dice Witch on your Discord server by clicking [here](https://discord.com/oauth2/authorize?client_id=1483805124852846602&permissions=2147584000&integration_type=0&scope=bot+applications.commands).
+You can install Pumpkin Spice Dice on your Discord server by clicking [here](https://discord.com/oauth2/authorize?client_id=1483805124852846602&permissions=2147584000&integration_type=0&scope=bot+applications.commands).
 
 # Usage
 ```
