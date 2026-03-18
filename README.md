@@ -1,6 +1,6 @@
 # 🎃 Pumpkin Spice Dice
 
-A Discord dice bot customized for **Pumpkin Spice: A Magical Cozy RPG** by [Acheron Games](https://acherongames.com).
+A Discord dice bot customized for [Pumpkin Spice: A Magical Cozy RPG](https://www.backerkit.com/c/projects/acheron-games/pumpkin-spice-a-magically-cozy-rpg) by Acheron Games.
 
 Based on [Dice Witch](https://github.com/cnharrison/dice-witch) by cnharrison — a visual TTRPG dice roller for Discord.
 
