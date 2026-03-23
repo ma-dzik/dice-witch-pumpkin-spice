@@ -19,8 +19,8 @@ const getEssenceSymbol = (result: number): string => {
   const [rightFace, topFace] = sideMap[result];
 
   const mainIcon = `<path style="fill:#ffffff;stroke:none" transform="translate(45,77) scale(0.78)" d="${essencePaths[result]}"/>`;
-  const rightIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.6" transform="translate(226,98) scale(0.15)" d="${essencePaths[rightFace]}"/>`;
-  const topIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.6" transform="translate(102,22) scale(0.15)" d="${essencePaths[topFace]}"/>`;
+  const rightIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.6" transform="translate(222,127) scale(0.2)" d="${essencePaths[rightFace]}"/>`;
+  const topIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.6" transform="translate(137,44) scale(0.2)" d="${essencePaths[topFace]}"/>`;
 
   return mainIcon + rightIcon + topIcon;
 };
