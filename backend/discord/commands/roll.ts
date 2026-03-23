@@ -17,7 +17,7 @@ const command = {
   name: "roll",
   aliases: ["r"],
   description: "Throw some dice",
-  usage: "[dice notation], e.g. 1d20 2d12. Type `/roll` for a detailed explanation",
+  usage: "[liczba kości], np. 3 (rzuca 3d6). Wpisz `/roll` po więcej pomocy",
 
   async execute({
     args,
