@@ -131,7 +131,7 @@ export class DiceService {
   }
 
   public shouldUsePatternFill(): boolean {
-    return Math.random() < 0.4;
+    return false;
   }
 
   public getIconWidth(index: number, diceIndex: number, iconSpacing: number) {
