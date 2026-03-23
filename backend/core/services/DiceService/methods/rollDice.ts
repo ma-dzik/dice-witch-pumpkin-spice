@@ -6,6 +6,18 @@ import { DiceArray, DiceFaces, DiceTypesToDisplay, Die, Result } from "../../../
 import { coinFlip } from "../../../../shared/helpers";
 import { DiceService } from "..";
 
+const PUMPKIN_COLOR_PAIRS = [
+  ['#3B1A08', '#D2691E'],
+  ['#6B3A2A', '#F4A460'],
+  ['#8B4513', '#DEB887'],
+  ['#4A2010', '#CD853F'],
+  ['#2C1503', '#A0522D'],
+];
+const randomPumpkinPair = () => {
+  const pair = PUMPKIN_COLOR_PAIRS[Math.floor(Math.random() * PUMPKIN_COLOR_PAIRS.length)];
+  return { color: chroma(pair[0]), secondaryColor: chroma(pair[1]) };
+};
+
 export async function rollDice(
   this: DiceService,
   args: string[],
@@ -130,8 +142,7 @@ export async function rollDice(
               }
 
               const isHeads = coinFlip();
-              const color = chroma.random();
-              const secondaryColor = isHeads ? this.getSecondaryColorFromColor(color) : chroma.random();
+              const { color, secondaryColor } = randomPumpkinPair();
               const textColor = this.getTextColorFromColors(color, secondaryColor);
 
               const icons = [];
@@ -273,8 +284,7 @@ export async function rollDice(
               }
 
               const isHeads = coinFlip();
-              const color = chroma.random();
-              const secondaryColor = isHeads ? this.getSecondaryColorFromColor(color) : chroma.random();
+              const { color, secondaryColor } = randomPumpkinPair();
               const textColor = this.getTextColorFromColors(color, secondaryColor);
 
               const icons = [];
@@ -349,9 +359,7 @@ export async function rollDice(
         }
 
         if (groupArray.length === 0) {
-          const isHeads = coinFlip();
-          const color = chroma.random();
-          const secondaryColor = isHeads ? this.getSecondaryColorFromColor(color) : chroma.random();
+          const { color, secondaryColor } = randomPumpkinPair();
           const textColor = this.getTextColorFromColors(color, secondaryColor);
 
           groupArray.push({
@@ -382,9 +390,7 @@ export async function rollDice(
       }
 
       if (groupArray.length === 0) {
-        const isHeads = coinFlip();
-        const color = chroma.random();
-        const secondaryColor = isHeads ? this.getSecondaryColorFromColor(color) : chroma.random();
+        const { color, secondaryColor } = randomPumpkinPair();
         const textColor = this.getTextColorFromColors(color, secondaryColor);
 
         groupArray.push({
