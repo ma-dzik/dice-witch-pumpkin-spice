@@ -3,6 +3,9 @@ import { Die, DiceFaces } from "../../../../shared/types";
 import { DiceService } from "..";
 import chroma from "chroma-js";
 
+const PUMPKIN_PALETTE = ['#8B4513', '#D2691E', '#CD853F', '#DEB887', '#A0522D', '#F4A460'];
+const randomPumpkin = () => chroma(PUMPKIN_PALETTE[Math.floor(Math.random() * PUMPKIN_PALETTE.length)]);
+
 export function processRollGroup(
   this: DiceService,
   rollGroup: any,
@@ -17,10 +20,10 @@ export function processRollGroup(
       if (!currentRoll) return null;
 
       const isHeads = coinFlip();
-      const color = chroma.random();
+      const color = randomPumpkin();
       const secondaryColor = isHeads
         ? this.getSecondaryColorFromColor(color)
-        : chroma.random();
+        : randomPumpkin();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const icon = this.generateIconArray(currentRoll.modifiers);
       const iconSpacing = this.getIconSpacing(icon);
@@ -49,10 +52,10 @@ export function processRollGroup(
       if (!currentRoll) return null;
 
       const isHeads = coinFlip();
-      const color = chroma.random();
+      const color = randomPumpkin();
       const secondaryColor = isHeads
         ? this.getSecondaryColorFromColor(color)
-        : chroma.random();
+        : randomPumpkin();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const initialValue = 
         typeof currentRoll.initialValue === 'number' ? currentRoll.initialValue :
@@ -77,10 +80,10 @@ export function processRollGroup(
       if (!cur) return acc;
 
       const isHeads = coinFlip();
-      const color = chroma.random();
+      const color = randomPumpkin();
       const secondaryColor = isHeads
         ? this.getSecondaryColorFromColor(color)
-        : chroma.random();
+        : randomPumpkin();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const icon = this.generateIconArray(cur.modifiers);
 
@@ -113,10 +116,10 @@ export function processRollGroup(
       if (!currentRoll) return null;
 
       const isHeads = coinFlip();
-      const color = chroma.random();
+      const color = randomPumpkin();
       const secondaryColor = isHeads
         ? this.getSecondaryColorFromColor(color)
-        : chroma.random();
+        : randomPumpkin();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const icon = this.generateIconArray(currentRoll.modifiers);
       const iconSpacing = this.getIconSpacing(icon);
