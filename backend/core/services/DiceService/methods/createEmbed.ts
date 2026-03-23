@@ -38,8 +38,7 @@ export function createEmbed(
   let sourceText = '';
 
   if (source === 'discord') {
-    const discordUsername = interaction?.user?.username;
-    sourceText = discordUsername ? `sent to ${discordUsername} via discord` : 'via discord';
+    sourceText = '🎃 may the essences guide you';
   } else if (source === 'web') {
     sourceText = username ? `sent to ${username} via web` : 'via web';
   }
