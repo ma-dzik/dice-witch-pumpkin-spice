@@ -3,7 +3,6 @@ import { AttachmentBuilder } from "discord.js";
 import { DiceArray, Die } from "../../../../shared/types";
 import { DiceService } from "..";
 import generateLinearGradientFill from "../../images/generateDice/fills/generateLinearGradientFill";
-import { getRandomPatternFill } from "../../images/generateDice/fills/generatePatternFills";
 import { CONFIG } from "../../../../config";
 
 let rollCount = 0;
@@ -73,13 +72,7 @@ export async function generateDiceAttachment(
     const drawDice = async (die: Die, index: number, outerIndex: number) => {
       let toLoad = null;
       try {
-        let patternFillObj;
-
-        if (this.shouldUsePatternFill()) {
-          patternFillObj = getRandomPatternFill(die.color.hex(), die.secondaryColor.hex());
-        } else {
-          patternFillObj = generateLinearGradientFill(die.color.hex(), die.secondaryColor.hex());
-        }
+        const patternFillObj = generateLinearGradientFill(die.color.hex(), die.secondaryColor.hex());
 
         toLoad = await this.generateDie({
           sides: die.sides,

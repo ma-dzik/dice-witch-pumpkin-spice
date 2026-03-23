@@ -13,7 +13,6 @@ import {
   generateGeneric,
 } from "../../images/generateDice/dice";
 import generateLinearGradientFill from "../../images/generateDice/fills/generateLinearGradientFill";
-import { getRandomPatternFill } from "../../images/generateDice/fills/generatePatternFills";
 
 const diceGenerators: Record<string | number, (props: GenerateDieProps) => string> = {
   20: generateD20,
@@ -51,11 +50,7 @@ export async function generateDie(
   }
 ): Promise<Buffer | undefined> {
   if (!patternFill) {
-    if (this.shouldUsePatternFill()) {
-      patternFill = getRandomPatternFill(solidFill || '#ffffff', outlineColor || '#000000');
-    } else {
-      patternFill = generateLinearGradientFill(solidFill || '#ffffff', outlineColor || '#000000');
-    }
+    patternFill = generateLinearGradientFill(solidFill || '#ffffff', outlineColor || '#000000');
   }
 
   let displayValue = rolled;
