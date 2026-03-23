@@ -42,8 +42,8 @@ const sendHelperMessage = async ({
     ) as ActionRowBuilder<ButtonBuilder>;
 
   const embed = createEmbed(
-    `Need help? 😅`,
-    `The \`/roll\` command has three arguments: \`notation\`, \`title\`, and \`timestorepeat\`. The \`notation\` argument must be in valid [dice notation](http://dmreference.com/MRD/Basics/The_Basics/Dice_Notation.htm).\nYou can roll any dice, but you can only see images of these dice: **${availableDice.map((dice: number | string) => `d${dice}`).join(", ")}**.\nYou can roll up to **${maxImageDice}** dice at once 😈\n\n`
+    `Potrzebujesz pomocy? 😅`,
+    `Użyj komendy \`/roll\` z argumentem \`liczba_kości\`, np. \`3\` rzuca 3d6.\nMożesz rzucać tylko kośćmi **d6** — to system esencji!\nMożesz rzucić maksymalnie **${maxImageDice}** kości na raz 😈\n\n`
   );
 
   const publicHelperMessage = ` 🚫🎲 Invalid dice notation! DMing you some help 😉`;
