@@ -33,7 +33,7 @@ export function createEmbed(
   source?: string,
   username?: string
 ): EmbedBuilder {
-  const diceOutput = resultArray.map((result) => mapEssences(result.output.replace(/ = .*$/, ""))).join("\n");
+  const diceOutput = resultArray.map((result) => mapEssences(result.output.replace(/ = .*$/, "").replace(/\d+d6:/, "🎃✨ Pumpkin dice essence:"))).join("\n");
 
   let sourceText = '';
 
