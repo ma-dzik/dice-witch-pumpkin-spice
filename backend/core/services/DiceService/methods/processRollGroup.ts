@@ -1,10 +1,19 @@
-import { coinFlip } from "../../../../shared/helpers";
 import { Die, DiceFaces } from "../../../../shared/types";
 import { DiceService } from "..";
 import chroma from "chroma-js";
 
-const PUMPKIN_PALETTE = ['#8B4513', '#D2691E', '#CD853F', '#DEB887', '#A0522D', '#F4A460'];
-const randomPumpkin = () => chroma(PUMPKIN_PALETTE[Math.floor(Math.random() * PUMPKIN_PALETTE.length)]);
+const PUMPKIN_COLOR_PAIRS = [
+  ['#3B1A08', '#D2691E'], // dark espresso + chocolate
+  ['#6B3A2A', '#F4A460'], // dark brown + sandy caramel
+  ['#8B4513', '#DEB887'], // sienna + burlywood
+  ['#4A2010', '#CD853F'], // deep brown + peru
+  ['#2C1503', '#A0522D'], // almost black + sienna
+];
+
+const randomPumpkinPair = () => {
+  const pair = PUMPKIN_COLOR_PAIRS[Math.floor(Math.random() * PUMPKIN_COLOR_PAIRS.length)];
+  return { color: chroma(pair[0]), secondary: chroma(pair[1]) };
+};
 
 export function processRollGroup(
   this: DiceService,
@@ -19,11 +28,7 @@ export function processRollGroup(
     return rollGroup.rolls.map((currentRoll: any) => {
       if (!currentRoll) return null;
 
-      const isHeads = coinFlip();
-      const color = randomPumpkin();
-      const secondaryColor = isHeads
-        ? this.getSecondaryColorFromColor(color)
-        : randomPumpkin();
+      const { color, secondary: secondaryColor } = randomPumpkinPair();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const icon = this.generateIconArray(currentRoll.modifiers);
       const iconSpacing = this.getIconSpacing(icon);
@@ -51,11 +56,7 @@ export function processRollGroup(
     return rollGroup.rolls.map((currentRoll: any) => {
       if (!currentRoll) return null;
 
-      const isHeads = coinFlip();
-      const color = randomPumpkin();
-      const secondaryColor = isHeads
-        ? this.getSecondaryColorFromColor(color)
-        : randomPumpkin();
+      const { color, secondary: secondaryColor } = randomPumpkinPair();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const initialValue = 
         typeof currentRoll.initialValue === 'number' ? currentRoll.initialValue :
@@ -79,11 +80,7 @@ export function processRollGroup(
     return rollGroup.rolls.reduce((acc: Die[], cur: any) => {
       if (!cur) return acc;
 
-      const isHeads = coinFlip();
-      const color = randomPumpkin();
-      const secondaryColor = isHeads
-        ? this.getSecondaryColorFromColor(color)
-        : randomPumpkin();
+      const { color, secondary: secondaryColor } = randomPumpkinPair();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const icon = this.generateIconArray(cur.modifiers);
 
@@ -115,11 +112,7 @@ export function processRollGroup(
     return rollGroup.rolls.map((currentRoll: any) => {
       if (!currentRoll) return null;
 
-      const isHeads = coinFlip();
-      const color = randomPumpkin();
-      const secondaryColor = isHeads
-        ? this.getSecondaryColorFromColor(color)
-        : randomPumpkin();
+      const { color, secondary: secondaryColor } = randomPumpkinPair();
       const textColor = this.getTextColorFromColors(color, secondaryColor);
       const icon = this.generateIconArray(currentRoll.modifiers);
       const iconSpacing = this.getIconSpacing(icon);
