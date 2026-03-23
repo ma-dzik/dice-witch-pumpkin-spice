@@ -18,9 +18,22 @@ const getEssenceSymbol = (result: number): string => {
 
   const [rightFace, topFace] = sideMap[result];
 
-  const mainIcon = `<path style="fill:#ffffff;stroke:none" transform="translate(45,77) scale(0.78)" d="${essencePaths[result]}"/>`;
-  const rightIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.6" transform="translate(222,127) scale(0.2)" d="${essencePaths[rightFace]}"/>`;
-  const topIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.6" transform="translate(137,44) scale(0.2)" d="${essencePaths[topFace]}"/>`;
+  // Front face rect: x=[59.9,221.7] y=[93.1,268.4], center=(140.8,180.8)
+  // Icon paths bbox approx x=[30,160] y=[30,160], center~(90,95)
+  // Centre icon: tx = 140 - 90*0.78 = 70, ty = 181 - 95*0.78 = 107
+  const mainIcon = `<path style="fill:#ffffff;stroke:none" transform="translate(70,107) scale(0.78)" d="${essencePaths[result]}"/>`;
+
+  // Right face parallelogram: top-right strip, slants ~42° (dx=29.4, dy=-32.2 per step)
+  // Area: x~[222,254], y~[49,246], center~(238,148)
+  // Apply skewY(-42) to tilt the icon to match the face angle, then scale small
+  // Icon center (90,95) scaled 0.22 = (19.8,20.9), skewY(-42) => skewX applied along Y
+  // Place: translate so center lands at (238,148)
+  const rightIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.65" transform="translate(236,95) scale(0.22,0.22) skewY(-42)" d="${essencePaths[rightFace]}"/>`;
+
+  // Top face parallelogram: top strip, slants ~48° (dx=31.8, dy=-28.7)
+  // Area: x~[46,254], y~[46,80], center~(150,63)
+  // Apply skewX(-48) to tilt the icon to match the face angle, then scale small
+  const topIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.65" transform="translate(100,48) scale(0.22,0.22) skewX(-48)" d="${essencePaths[topFace]}"/>`;
 
   return mainIcon + rightIcon + topIcon;
 };
