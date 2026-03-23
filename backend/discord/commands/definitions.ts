@@ -6,20 +6,9 @@ export const globalSlashCommands: ApplicationCommandDataResolvable[] = [
     description: "Throws some dice",
     options: [
       {
-        name: "notation",
+        name: "liczba_kości",
         required: true,
-        description: "Dice notation, e.g. 1d6+2",
-        type: ApplicationCommandOptionType.String,
-      },
-      {
-        name: "title",
-        description: "What is this roll for? e.g. attack with enchanted sword",
-        type: ApplicationCommandOptionType.String,
-      },
-      {
-        name: "timestorepeat",
-        description:
-          "If you would like to repeat this roll, enter the number of times here.",
+        description: "Ile kości rzucasz? np. 3",
         type: ApplicationCommandOptionType.String,
       },
     ],

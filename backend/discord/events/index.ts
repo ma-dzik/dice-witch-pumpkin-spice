@@ -156,7 +156,7 @@ const setupEvents = async (discord: Client) => {
           }
         }
 
-        const { value: diceNotation } = interaction.options.get("notation") || {};
+        const { value: diceNotation } = interaction.options.get("liczba_kości") || {};
         const { value: title } = interaction.options.get("title") || {};
         const { value: topic } = interaction.options.get("topic") || {};
         const { value: timesToRepeat } = interaction.options.get("timestorepeat") || {};
