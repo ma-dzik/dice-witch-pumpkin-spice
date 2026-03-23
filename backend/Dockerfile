@@ -33,4 +33,4 @@ USER bun
 
 EXPOSE 3000
 
-CMD ["bun", "run", "server.ts"]
+CMD ["sh", "-c", "bunx prisma migrate deploy && bun run server.ts"]
