@@ -19,21 +19,20 @@ const getEssenceSymbol = (result: number): string => {
   const [rightFace, topFace] = sideMap[result];
 
   // Front face rect: x=[59.9,221.7] y=[93.1,268.4], center=(140.8,180.8)
-  // Icon paths bbox approx x=[30,160] y=[30,160], center~(90,95)
-  // Centre icon: tx = 140 - 90*0.78 = 70, ty = 181 - 95*0.78 = 107
-  const mainIcon = `<path style="fill:#ffffff;stroke:none" transform="translate(70,107) scale(0.78)" d="${essencePaths[result]}"/>`;
+  // Icon paths visual center ~(88,95); tx=140-88*0.78=71→62 (shift slightly left), ty=181-95*0.78=107→100 (shift slightly up)
+  const mainIcon = `<path style="fill:#ffffff;stroke:none" transform="translate(62,100) scale(0.78)" d="${essencePaths[result]}"/>`;
 
-  // Right face parallelogram: top-right strip, slants ~42° (dx=29.4, dy=-32.2 per step)
-  // Area: x~[222,254], y~[49,246], center~(238,148)
-  // Apply skewY(-42) to tilt the icon to match the face angle, then scale small
-  // Icon center (90,95) scaled 0.22 = (19.8,20.9), skewY(-42) => skewX applied along Y
-  // Place: translate so center lands at (238,148)
-  const rightIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.65" transform="translate(236,95) scale(0.22,0.22) skewY(-42)" d="${essencePaths[rightFace]}"/>`;
+  // Right face parallelogram: vertices TL(224.4,91.1) TR(253.8,58.9) BR(253.8,214.1) BL(224.4,246.3)
+  // Usable rect x=[224.4,253.8] (w=29.4) y=[58.9,214.1] (h=155.2), center=(239.1,136.5)
+  // skewY(-42): x' = x + y*tan(-42°) = x - 0.9*y; icon center (90,95) → (4.5,95) → scale(0.12,0.25) → (0.54,23.75) → +translate(238,112) → (238.5,135.75) ✓
+  // x boundary check at y=[30..160]: always within [224,254] ✓
+  const rightIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.65" transform="translate(238,112) scale(0.12,0.25) skewY(-42)" d="${essencePaths[rightFace]}"/>`;
 
-  // Top face parallelogram: top strip, slants ~48° (dx=31.8, dy=-28.7)
-  // Area: x~[46,254], y~[46,80], center~(150,63)
-  // Apply skewX(-48) to tilt the icon to match the face angle, then scale small
-  const topIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.65" transform="translate(100,48) scale(0.22,0.22) skewX(-48)" d="${essencePaths[topFace]}"/>`;
+  // Top face parallelogram: vertices BL(64.9,79.9) TL(96.7,51.2) TR(238.3,51.2) BR(206.4,79.9)
+  // Center=(151.6,65.6); height=28.7px; skewX(-48): x' = x - 1.11*y
+  // Icon center (90,95) → skewX → (-15.45,95) → scale(0.25,0.11) → (-3.86,10.45) → +translate(156,55) → (152.1,65.5) ✓
+  // y boundary: [30..160]*0.11+55=[58.3..72.6] within [51..80] ✓
+  const topIcon = `<path style="fill:#ffffff;stroke:none;opacity:0.65" transform="translate(156,55) scale(0.25,0.11) skewX(-48)" d="${essencePaths[topFace]}"/>`;
 
   return mainIcon + rightIcon + topIcon;
 };
